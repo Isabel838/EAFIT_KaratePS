@@ -34,4 +34,5 @@ Feature: Tranfer to Parabank
     """
        When method post
        Then status 400
-       And match response contains '"payeeName"'
+       And match response == """ { "payeeName": "prueba", "amount": 12, "accountId": 13566 } """
+
