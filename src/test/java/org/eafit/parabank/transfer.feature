@@ -4,15 +4,34 @@ Feature: Tranfer to Parabank
   Background:
     * url baseUrl
     * header Accept = 'application/json'
-    * def accountFrom = 21669
-    * def accountto = 21669
-    * def amount = 150
+    * def accountto = 13677
+    * def amount = 12
+    * def name = 'prueba'
+    * def street = 'street'
+    * def city = 'medellin'
+    * def state = 'antioquia'
+    * def zipCode = '0444'
+    * def phoneNumber = '445555'
+    * def accountNumber = 13566
 
   Scenario: Customer Transfer
-      Given path 'transfer'
-      And param fromAccountId = accountFrom
-      And param toAccountId = accountto
+      Given path 'billpay'
+      And param accountId = accountId
       And param amount = amount
-      When method POST
-      Then status 200
-      And match response contains 'Successfully transferred'
+      And request 
+       """
+    {
+       "name": "#(prueba)",
+       "address": {
+         "street": "#(street)",
+          "city": "#(city)",
+          "state": "#(state)",
+          "zipCode": "#(zipCode)"
+        },
+       "phoneNumber": "#(phoneNumber)",
+       "accountNumber": #(accountNumber)
+    }
+    """
+       When method post
+       Then status 400
+  
