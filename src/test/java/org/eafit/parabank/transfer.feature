@@ -34,4 +34,4 @@ Feature: Tranfer to Parabank
     """
        When method post
        Then status 400
-  
+       And match response contains '"payeeName"'
