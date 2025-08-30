@@ -32,8 +32,8 @@ Feature: Tranfer to Parabank
        "accountNumber": #(accountNumber)
     }
     """
-       When method post
-       Then status 400
+       When method POST
+       Then status 200
        And match response contains { payeeName: 'prueba' }
 
 
